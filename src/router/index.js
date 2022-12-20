@@ -78,14 +78,21 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/tab',
+    path: '/audit',
     component: Layout,
+    name: '审核管理',
+    alwaysShow: true, // will always show the root menu
+    meta: {
+      title: '审核管理',
+      icon: 'el-icon-circle-check',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/tab/index'),
-        name: 'Index',
-        meta: { title: '列表', icon: 'tab' }
+        path: 'dev',
+        component: () => import('@/views/audit/dev'),
+        name: 'Dev',
+        meta: { title: '开发者审核' }
       }
     ]
   },
