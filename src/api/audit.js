@@ -1,9 +1,16 @@
 import request from '@/utils/request'
 
-export function fetchList(query) {
+export function getAllUserInfo() {
   return request({
     url: '/v1/api/admin/getAllUserInfo',
-    method: 'get',
-    params: query
+    method: 'get'
+  })
+}
+
+export function auditDeveloper(data) {
+  return request({
+    url: '/v1/api/admin/auditDeveloper',
+    method: 'post',
+    data
   })
 }
