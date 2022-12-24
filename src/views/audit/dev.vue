@@ -62,7 +62,8 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button v-if="auditMode" type="primary" @click="auditConfirm">确定</el-button>
+          <el-button v-if="auditMode" type="primary" @click="auditConfirm">确认审批</el-button>
+          <el-button v-else-if="modifyMode" type="primary" @click="modifyConfirm">确认编辑</el-button>
           <el-button @click="dialogVisible = false">取消</el-button>
         </el-form-item>
       </el-form>

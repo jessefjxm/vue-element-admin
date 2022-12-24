@@ -93,6 +93,11 @@ export const asyncRoutes = [
         component: () => import('@/views/audit/dev'),
         name: 'Dev',
         meta: { title: '开发者审核' }
+      }, {
+        path: 'app',
+        component: () => import('@/views/audit/app'),
+        name: 'App',
+        meta: { title: '小程序审核' }
       }
     ]
   },

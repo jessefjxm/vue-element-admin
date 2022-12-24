@@ -7,6 +7,13 @@ export function getAllUserInfo() {
   })
 }
 
+export function getAllAppInfo() {
+  return request({
+    url: '/v1/api/admin/getAllAppInfo',
+    method: 'get'
+  })
+}
+
 export function auditDeveloper(data) {
   return request({
     url: '/v1/api/admin/auditDeveloper',

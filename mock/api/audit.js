@@ -42,6 +42,59 @@ module.exports = [
         ]
       }
     }
+  },
+  {
+    url: '/v1/api/admin/getAllAppInfo',
+    type: 'get',
+    response: _ => {
+      return {
+        code: 20000,
+        data: [
+          {
+            'downloadurl': '../../ocr/ocrMainPage/ocrMainPage',
+            'technology': 'applets',
+            'picturetype': 1,
+            'shortname': 'ocr',
+            'picture': '/assets/index/ocr_banner.png',
+            'appid': 'aaaa-bbbb',
+            'displayname': 'OCR识别',
+            'developer': 'center',
+            'frontendId': 1,
+            'detail': 'OCR识别',
+            'techcode': 'https://github.com/oracle/graal',
+            'createTimestamp': 1669860904
+          },
+          {
+            'downloadurl': '../../tts/ttsMainPage',
+            'technology': 'applets',
+            'picturetype': 2,
+            'shortname': 'tts',
+            'picture': '/assets/index/tts_banner.png',
+            'appid': 'cccc-dddd',
+            'displayname': '语音合成',
+            'developer': 'center',
+            'frontendId': 2,
+            'detail': '语音合成',
+            'techcode': 'https://github.com/oracle/graal',
+            'createTimestamp': 1679860904
+          },
+          {
+            'downloadurl': '../../asr/asrMainPage',
+            'technology': 'applets',
+            'picturetype': 3,
+            'shortname': 'asr',
+            'picture': '/assets/index/asr_banner.png',
+            'appid': 'eeee-ffff',
+            'displayname': '语音识别',
+            'developer': 'center',
+            'frontendId': 3,
+            'detail': '语音识别',
+            'techcode': 'https://github.com/oracle/graal',
+            'createTimestamp': 1689860904
+          }
+        ]
+      }
+    }
   }, {
     url: '/v1/api/admin/auditDeveloper',
     type: 'post',
