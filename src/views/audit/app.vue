@@ -2,7 +2,7 @@
   <div class="tab-container">
 
     <el-table class="table" :data="list" style="width: 100%">
-      <el-table-column prop="frontendId" label="编号" />
+      <el-table-column width="60" prop="id" label="编号" />
       <el-table-column prop="displayname" label="名称" />
       <el-table-column prop="detail" label="详情" />
       <el-table-column prop="developer" label="开发者" />
@@ -23,7 +23,7 @@
     <el-dialog title="小程序信息" :visible.sync="dialogVisible" width="30%" center>
       <el-form ref="form" label-width="80px">
         <el-form-item label="编号">
-          <span v-if="!modifyMode">{{ appInfo.frontendId }}</span>
+          <span v-if="!modifyMode">{{ appInfo.id }}</span>
         </el-form-item>
         <el-form-item label="名称">
           <el-input v-if="modifyMode" v-model="appInfo.displayname" placeholder="请输入内容" />
@@ -60,13 +60,13 @@
 </template>
 
 <script>
-import { getAllAppInfo } from '@/api/audit'
+import { getCenterAppList, getPersonalAppList } from '@/api/audit'
 
 export default {
   name: 'App',
   data() {
     return {
-      list: null,
+      list: [],
       loading: false,
 
       dialogVisible: false,
@@ -87,8 +87,12 @@ export default {
   methods: {
     getList() {
       this.loading = true
-      getAllAppInfo().then(response => {
-        this.list = response.data
+
+      const personalAppList = getPersonalAppList()
+      const centerAppList = getCenterAppList()
+      Promise.all([personalAppList, centerAppList]).then(allRes => {
+        allRes.forEach((res) => { this.list = this.list.concat(res.data) })
+        this.list.sort((a, b) => a.id - b.id)
         this.loading = false
       })
     },

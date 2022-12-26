@@ -1,54 +1,66 @@
 module.exports = [
   {
-    url: '/v1/api/admin/getAllUserInfo',
+    url: '/emm-server/v1/api/getAllUserInfo',
     type: 'get',
     response: _ => {
       return {
-        code: 20000,
+        status: 200,
         data: [
           {
-            'name': '新成员',
-            'dept': '基础技术中心',
-            'team': '交付实施团队',
-            'usage': '用途1用途1用途1用途1用途1用途1用途1用途1',
-            'id': '10001234',
-            'status': 0,
-            'timestamp': 1669860904
+            'id': 1, // 记录序号
+            'name': '莉莉娅',
+            'dept': '部门',
+            'jobId': '工号',
+            'team': '团队',
+            'purpose': '用途',
+            'p_num': '电话号码',
+            'role': 0,
+            'auditStatus': 0, // 审核状态，1=审核中，2=审核通过，3=审核失败
+            'auditReason': '审批通过或拒绝的理由'
           }, {
-            'name': '审核中',
-            'dept': '基础技术中心',
-            'team': '敏捷研发团队',
-            'usage': '用途2用途2用途2用途2用途2用途2用途2用途2用途2用途2用途2',
-            'id': '26474987',
-            'status': 1,
-            'timestamp': 1669860904
+            'id': 2, // 记录序号
+            'name': '漏了',
+            'dept': '部门',
+            'jobId': '工号',
+            'team': '团队',
+            'purpose': '用途',
+            'p_num': '电话号码',
+            'role': 2,
+            'auditStatus': 1, // 审核状态，1=审核中，2=审核通过，3=审核失败
+            'auditReason': '审批通过或拒绝的理由'
           }, {
-            'name': '失败了',
-            'dept': '基础技术中心',
-            'team': '大数据团队',
-            'usage': '用途3用途3用途3用途3用途3用途3用途3用途3用途3用途3用途3用途3用途3用途3用途3用途3',
-            'id': '45246975',
-            'status': 3,
-            'timestamp': 1669860904
+            'id': 3, // 记录序号
+            'name': '理论上',
+            'dept': '部门',
+            'jobId': '工号',
+            'team': '团队',
+            'purpose': '用途',
+            'p_num': '电话号码',
+            'role': 1,
+            'auditStatus': 2, // 审核状态，1=审核中，2=审核通过，3=审核失败
+            'auditReason': '审批通过或拒绝的理由'
           }, {
-            'name': '已通过',
-            'dept': '基础技术中心',
-            'team': '大数据团队',
-            'usage': '用途4444444444444444444444',
-            'id': '45246975',
-            'status': 2,
-            'timestamp': 1669860904
+            'id': 4, // 记录序号
+            'name': '莉莉丝',
+            'dept': '部门',
+            'jobId': '工号',
+            'team': '团队',
+            'purpose': '用途',
+            'p_num': '电话号码',
+            'role': 0,
+            'auditStatus': 3, // 审核状态，1=审核中，2=审核通过，3=审核失败
+            'auditReason': '审批通过或拒绝的理由'
           }
         ]
       }
     }
   },
   {
-    url: '/v1/api/admin/getAllAppInfo',
+    url: '/emm-server/applist/getCenterAppList',
     type: 'get',
     response: _ => {
       return {
-        code: 20000,
+        status: 200,
         data: [
           {
             'downloadurl': '../../ocr/ocrMainPage/ocrMainPage',
@@ -59,7 +71,7 @@ module.exports = [
             'appid': 'aaaa-bbbb',
             'displayname': 'OCR识别',
             'developer': 'center',
-            'frontendId': 1,
+            'id': 1,
             'detail': 'OCR识别',
             'techcode': 'https://github.com/oracle/graal',
             'createTimestamp': 1669860904
@@ -73,7 +85,7 @@ module.exports = [
             'appid': 'cccc-dddd',
             'displayname': '语音合成',
             'developer': 'center',
-            'frontendId': 2,
+            'id': 2,
             'detail': '语音合成',
             'techcode': 'https://github.com/oracle/graal',
             'createTimestamp': 1679860904
@@ -87,7 +99,7 @@ module.exports = [
             'appid': 'eeee-ffff',
             'displayname': '语音识别',
             'developer': 'center',
-            'frontendId': 3,
+            'id': 3,
             'detail': '语音识别',
             'techcode': 'https://github.com/oracle/graal',
             'createTimestamp': 1689860904
@@ -96,12 +108,35 @@ module.exports = [
       }
     }
   }, {
-    url: '/v1/api/admin/auditDeveloper',
+    url: '/emm-server/applist/getPersonalAppList',
+    type: 'get',
+    response: _ => {
+      return {
+        status: 200,
+        data: [
+          {
+            'downloadurl': '',
+            'technology': 'applets',
+            'picturetype': 0,
+            'shortname': 'ocr',
+            'picture': '/assets/index/ocr_banner.png',
+            'appid': '93573376-ca8d-44ac-aadf-54da855965f6',
+            'displayname': 'OCR识别',
+            'developer': 'personal',
+            'id': 11,
+            'techcode': 'https://github.com/oracle/graal',
+            'createTimestamp': 1669860904
+          }
+        ]
+      }
+    }
+  }, {
+    url: '/emm-server/v1/api/updateDeveloperInfo',
     type: 'post',
     response: _ => {
       return {
-        code: 20000,
-        message: 'ok'
+        status: 200,
+        message: '提交成功'
       }
     }
   }

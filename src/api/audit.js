@@ -2,21 +2,27 @@ import request from '@/utils/request'
 
 export function getAllUserInfo() {
   return request({
-    url: '/v1/api/admin/getAllUserInfo',
+    url: '/emm-server/v1/api/getAllUserInfo',
     method: 'get'
   })
 }
 
-export function getAllAppInfo() {
+export function getCenterAppList() {
   return request({
-    url: '/v1/api/admin/getAllAppInfo',
+    url: '/emm-server/applist/getCenterAppList',
+    method: 'get'
+  })
+}
+export function getPersonalAppList() {
+  return request({
+    url: '/emm-server/applist/getPersonalAppList',
     method: 'get'
   })
 }
 
-export function auditDeveloper(data) {
+export function updateDeveloperInfo(data) {
   return request({
-    url: '/v1/api/admin/auditDeveloper',
+    url: '/emm-server/v1/api/updateDeveloperInfo',
     method: 'post',
     data
   })

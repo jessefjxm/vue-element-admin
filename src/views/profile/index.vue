@@ -1,19 +1,16 @@
 <template>
   <div class="app-container">
-    <div v-if="user">
-      <el-row :gutter="20">
+    <el-row :gutter="20">
 
-        <el-col :span="6" :xs="24">
-          <user-card :user="user" />
-        </el-col>
+      <el-col :span="6" :xs="24">
+        <user-card :user-info="userInfo" />
+      </el-col>
 
-      </el-row>
-    </div>
+    </el-row>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import UserCard from './components/UserCard'
 
 export default {
@@ -21,27 +18,16 @@ export default {
   components: { UserCard },
   data() {
     return {
-      user: {},
+      userInfo: {},
       activeTab: 'activity'
     }
-  },
-  computed: {
-    ...mapGetters([
-      'name',
-      'avatar',
-      'roles'
-    ])
   },
   created() {
     this.getUser()
   },
   methods: {
     getUser() {
-      this.user = {
-        name: this.name,
-        role: this.roles.join(' | '),
-        avatar: this.avatar
-      }
+      this.userInfo = this.$store.getters.userInfo
     }
   }
 }

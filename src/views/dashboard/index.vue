@@ -51,7 +51,7 @@
 <script>
 import PieChart from './components/PieChart'
 import CountTo from 'vue-count-to'
-import { getAllAppInfo, getAllUserInfo } from '@/api/audit'
+import { getCenterAppList, getPersonalAppList, getAllUserInfo } from '@/api/audit'
 
 export default {
   name: 'DashboardAdmin',
@@ -61,11 +61,11 @@ export default {
   data() {
     return {
       devCount: 0,
-      devLegendData: [],
+      devLegendData: ['尚未申请', '等待审核', '审核失败', '审核成功'],
       devSeriesData: [],
 
       appCount: 0,
-      appLegendData: [],
+      appLegendData: ['中心发布', '个人发布'],
       appSeriesData: []
     }
   },
@@ -75,22 +75,18 @@ export default {
   methods: {
     getList() {
       getAllUserInfo().then(response => {
-        this.devLegendData = ['尚未申请', '等待审核', '审核失败', '审核成功']
-        this.devSeriesData = [
-          { value: response.data.filter((element) => { return element.status === 0 }).length, name: '尚未申请' },
-          { value: response.data.filter((element) => { return element.status === 1 }).length, name: '等待审核' },
-          { value: response.data.filter((element) => { return element.status === 2 }).length, name: '审核失败' },
-          { value: response.data.filter((element) => { return element.status === 3 }).length, name: '审核成功' }
-        ]
+        for (let i = 0; i < this.devLegendData.length; i++) {
+          this.devSeriesData.push({ value: response.data.filter((element) => { return element.status === i }).length, name: this.devLegendData[i] })
+        }
         this.devCount = response.data.length
       })
-      getAllAppInfo().then(response => {
-        this.appLegendData = ['未提交', '已提交']
-        this.appSeriesData = [
-          { value: response.data.filter((element) => { return !element.techcode }).length, name: '未提交' },
-          { value: response.data.filter((element) => { return element.techcode }).length, name: '已提交' }
-        ]
-        this.appCount = response.data.length
+      const personalAppList = getPersonalAppList()
+      const centerAppList = getCenterAppList()
+      Promise.all([personalAppList, centerAppList]).then(allRes => {
+        for (let i = 0; i < this.appLegendData.length; i++) {
+          this.appSeriesData.push({ value: allRes[i].data.length, name: this.appLegendData[i] })
+          this.appCount += allRes[i].data.length
+        }
       })
     }
   }

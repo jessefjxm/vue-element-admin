@@ -5,9 +5,21 @@
     </div>
 
     <div class="user-profile">
-      <el-form label-width="80px">
-        <el-form-item label="用户名称">{{ user.name }}</el-form-item>
-        <el-form-item label="用户角色">{{ user.role }}</el-form-item>
+      <el-form ref="form" label-width="80px">
+        <el-form-item label="序号"><span>{{ userInfo.id }}</span></el-form-item>
+        <el-form-item label="用户"><span>{{ userInfo.name }}</span></el-form-item>
+        <el-form-item label="工号"><span>{{ userInfo.jobId }}</span></el-form-item>
+        <el-form-item label="所属中心"><span>{{ userInfo.dept }}</span></el-form-item>
+        <el-form-item label="所属团队"><span>{{ userInfo.team }}</span></el-form-item>
+        <el-form-item label="开发用途"><span>{{ userInfo.usage }}</span></el-form-item>
+        <el-form-item label="电话号码"><span>{{ userInfo.p_num }}</span></el-form-item>
+        <el-form-item label="权限">
+          <el-radio-group v-model="roleResult" disabled>
+            <el-radio label="无权限" />
+            <el-radio label="管理员" />
+            <el-radio label="开发者" />
+          </el-radio-group>
+        </el-form-item>
       </el-form>
     </div>
   </el-card>
@@ -17,17 +29,17 @@
 
 export default {
   props: {
-    user: {
+    roleResult: {
+      type: String,
+      default: ''
+    },
+    userInfo: {
       type: Object,
-      default: () => {
-        return {
-          name: '',
-          email: '',
-          avatar: '',
-          role: ''
-        }
-      }
+      default: () => {}
     }
+  },
+  created() {
+    this.roleResult = this.userInfo.role === 1 ? '管理员' : this.userInfo.role === 2 ? '开发者' : '无权限'
   }
 }
 </script>
