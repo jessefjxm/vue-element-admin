@@ -7,7 +7,7 @@
       <el-table-column prop="jobId" label="工号" />
       <el-table-column prop="dept" label="所属中心" />
       <el-table-column prop="team" label="所属团队" />
-      <el-table-column prop="usage" label="开发小程序用途" />
+      <el-table-column prop="purpose" label="开发小程序用途" />
       <el-table-column prop="p_num" label="电话号码" />
       <el-table-column width="70" label="权限">
         <template slot-scope="scope">
@@ -56,8 +56,8 @@
           <span v-if="!modifyMode">{{ userInfo.team }}</span>
         </el-form-item>
         <el-form-item label="开发用途">
-          <el-input v-if="modifyMode" v-model="userInfo.usage" placeholder="请输入内容" />
-          <span v-if="!modifyMode">{{ userInfo.usage }}</span>
+          <el-input v-if="modifyMode" v-model="userInfo.purpose" placeholder="请输入内容" />
+          <span v-if="!modifyMode">{{ userInfo.purpose }}</span>
         </el-form-item>
         <el-form-item label="电话号码">
           <el-input v-if="modifyMode" v-model="userInfo.p_num" placeholder="请输入内容" />
