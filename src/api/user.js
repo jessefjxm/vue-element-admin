@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/emm-server/v1/api/managerLogin',
+    url: '/v1/api/managerLogin',
     method: 'post',
     data
   })

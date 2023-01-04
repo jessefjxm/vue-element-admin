@@ -1,7 +1,7 @@
 module.exports = [
   // user login
   {
-    url: '/emm-server/v1/api/managerLogin',
+    url: '/v1/api/managerLogin',
     type: 'post',
     response: config => {
       return {

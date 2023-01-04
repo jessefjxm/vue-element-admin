@@ -1,6 +1,6 @@
 module.exports = [
   {
-    url: '/emm-server/v1/api/getAllUserInfo',
+    url: '/v1/api/getAllUserInfo',
     type: 'get',
     response: _ => {
       return {
@@ -56,7 +56,7 @@ module.exports = [
     }
   },
   {
-    url: '/emm-server/applist/getCenterAppList',
+    url: '/applist/getCenterAppList',
     type: 'get',
     response: _ => {
       return {
@@ -108,7 +108,7 @@ module.exports = [
       }
     }
   }, {
-    url: '/emm-server/applist/getPersonalAppList',
+    url: '/applist/getPersonalAppList',
     type: 'get',
     response: _ => {
       return {
@@ -131,7 +131,7 @@ module.exports = [
       }
     }
   }, {
-    url: '/emm-server/v1/api/updateDeveloperInfo',
+    url: '/v1/api/updateDeveloperInfo',
     type: 'post',
     response: _ => {
       return {
